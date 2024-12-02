@@ -14,14 +14,14 @@ namespace Application.Activities
             private readonly DataContext _context;
 
             public Handler(DataContext context){
-
                 _context =context;
-
-
             }
-            public Task Handle(Command request, CancellationToken cancellationToken)
+            public  async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                throw new NotImplementedException();
+                _context.Activities.Add(request.Activity);
+
+                await _context.SaveChangesAsync();
+            
             }
 
         }
